@@ -29,7 +29,7 @@ desarrollo del mismo </p>
 
 |No.|Descripcion|Ponteciador|Estatus|
 |---|---|---|---|
-| 1.|Configuración inicial del Proyecto (NodeJS)|❌|❌|
+| 1.|Configuración inicial del Proyecto (NodeJS)|1|✅ Terminado|
 | 2.|Routing y Requests (peticiones)|❌|❌|
 | 3.|Layout, Templates Engines y Tailwind CSS (Frontend)|❌|❌|
 | 4.|Creacion de Paginas de Login y Creacion de Usuarios|❌|❌|
