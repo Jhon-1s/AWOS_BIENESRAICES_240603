@@ -1,0 +1,35 @@
+{
+  "name": "awos_bienesraices_240603",
+  "version": "1.0.0",
+  "description": "Sistema de Bienes Raices - Proyecto de Clase",
+  "keywords": [
+    "SOA",
+    "MVC",
+    "REST",
+    "Tailwind",
+    "Sequelize",
+    "NodeJS"
+  ],
+  "homepage": "https://github.com/Jhon-1s/AWOS_BIENESRAICES_240603#readme",
+  "bugs": {
+    "url": "https://github.com/Jhon-1s/AWOS_BIENESRAICES_240603/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jhon-1s/AWOS_BIENESRAICES_240603.git"
+  },
+  "license": "ISC",
+  "author": "Jonathan I. Leal Cruz",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemo": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
