@@ -31,7 +31,7 @@ desarrollo del mismo </p>
 |---|---|---|---|
 | 1.|Configuración inicial del Proyecto (NodeJS)|1|✅ Terminado|
 | 2.|Routing y Requests (peticiones)|5|✅ Terminado|
-| 3.|Layout, Templates Engines y Tailwind CSS (Frontend)|❌|❌|
+| 3.|Layout, Templates Engines y Tailwind CSS (Frontend)|5|✅ Terminado|
 | 4.|Creacion de Paginas de Login y Creacion de Usuarios|❌|❌|
 | 5.|ORMs y Bases de Datos|❌|❌|
 | 6.|Insertando Resgistros en la Tabla Usuarios|❌|❌|
