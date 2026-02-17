@@ -1,11 +1,12 @@
 import express from 'express'
+import { formularioLogin, formularioRegistro } from '../controllers/usuarioController.js';
 
 // Creamos el ruteador
 const router = express.Router();
+router.get("/login", formularioLogin)
+router.get("/registro", formularioRegistro)
 
-
-//definimos las rutas
-
+//Definimos las rutas
 // Ejemplo de un ENDPOINT GET
 router.get("/", (req, res) => {
     console.log("Bienvenid@ al Sistema de Bienes Raices")
@@ -32,7 +33,7 @@ router.post("/createUser", (req,res)=>{
     console.log("Se ha solicitado crear un nuevo usuario.")
     const nuevoUsuario = 
     {
-        nombre: "Jonathan I. Leal Cruz",
+        nombre: "Jonathan Leal",
         correo: "jonathan.leal@gmail.com"
     }
     res.json({
@@ -49,7 +50,7 @@ router.put("/updateUser", (req, res) =>
     console.log("Se ha solicitao la actualización de los datos del usuario, siendo PUT una actualización completa.")
     const usuario = 
     {
-        nombre: "Jonathan I. Leal Cruz",
+        nombre: "Jonathan I. Leal",
         correo: "jonathan.leal@gmail.com"
     }
 
@@ -73,7 +74,7 @@ router.patch("/updatePassword/:nuevoPassword", (req, res) =>
     console.log("Procesando una petición del tipo PATCH");
     const usuario = 
     {
-        nombre: "Jonathan I. Leal Cruz",
+        nombre: "Jonathan Leal",
         correo: "jonathan.leal@gmail.com",
         password: "abcde"
     }
@@ -102,16 +103,6 @@ router.delete("/deleteProperty/:id", (req, res)=>
     })
 
 
-
-router.get("/login", (req, res) => {
-    console.log("El usuario desea acceder al sistema")
-    res.status(200).send(`<h1>Por favor introduce tus credenciales de acceso </h1>
-        <form>
-            <input type="text"></input><br>
-            <input type="password"></input><br>
-            <button>Enviar</button>
-        </form>`);
-})
 
 router.get("/saludo/:nombre", (req, res)=>
     {
