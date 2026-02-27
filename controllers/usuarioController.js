@@ -5,7 +5,8 @@ const formularioLogin = (req, res) => {
         pagina: 'Iniciar Sesión' 
     });
 const formularioLogin = (req, res) =>{
-    res.render('auth/login',{
+    res.render('auth/login', {
+        pagina: 'Iniciar Sesión' 
     })
 }
 
@@ -43,7 +44,8 @@ const registrarUsuario = async (req, res) => {
 
 // Exportamos TODAS las funciones
 const formularioRegistro = (req, res) =>{
-    res.render('auth/registro',{x
+    res.render('auth/registro', {
+        pagina: 'Crear Cuenta'
     })
 }
 

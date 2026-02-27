@@ -2,9 +2,25 @@ extends ../layout/index
 
 block content
     div.py-10
-        h1.text-4xl.my-10.font-extrabold.text-center Bienes
-            span.font-normal Raices
+        h1.text-4xl.my-10.font-extrabold.text-center.text-green-400 Bienes
+            span.font-normal.text-black Raices
         
-        h2.text-center.text-2xl.font-extrabold= pagina
+        h2.text-center.text-2xl.font-normal Inicia Sesión
 
-        p.text-center.text-gray-500 Formularios de Login
+    div.mt-8.mx-auto.max-w-md
+        .bg-white.py-8.px-4.shadow-2xl.rounded-md
+            form.space-y-5
+                div
+                    label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Correo Electronico
+                    input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e:usuario@dominio.com" type="email" name="email")
+
+                div
+                    label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") Contraseña
+                    input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e:ContraseñaSegura123" type="password" name="password")
+
+                div.flex.items-center.justify-between
+                    input(class="w-full bg-green-500 hover:bg-green-300 text-white font-bold py-3 cursor-pointer rounded-4xl shadow-lg uppercase" type="submit" value="Inicia Sesion")
+
+                div.flex.justify-between
+                    a.text-gray-500.text-xs(href="/auth/login" class="hover:text-green-300 hover:underline") ¿Ya tienes cuenta? Inicia Sesión
+                    a.text-gray-500.text-xs(href="/auth/olvidepassword" class="hover:text-green-300 hover:underline") Olvidé mi Password
