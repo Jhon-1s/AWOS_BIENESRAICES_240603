@@ -1,10 +1,14 @@
 import express from 'express'
-import { formularioLogin, formularioRegistro } from '../controllers/usuarioController.js';
+// Agregamos formularioRecuperacion a la lista de importación
+import { formularioLogin, formularioRegistro, registrarUsuario, formularioRecuperacion } from '../controllers/usuarioController.js';
 
-// Creamos el ruteador
 const router = express.Router();
 router.get("/login", formularioLogin)
 router.get("/registro", formularioRegistro)
+router.post("/registro", registrarUsuario)
+router.get("/olvidepassword", formularioRecuperacion);
+
+//post
 
 //Definimos las rutas
 // Ejemplo de un ENDPOINT GET
