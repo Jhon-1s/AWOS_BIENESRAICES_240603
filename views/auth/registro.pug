@@ -9,25 +9,34 @@ block content
 
         .mt-8.mx-auto.max-w-md
             .bg-white.py-8.px-4.shadow-2xl.rounded-md
-                form.space-y-5
-                    div
-                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="nombre") Tu Nombre
-                        input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e:Jonathan Isai Leal Cruz" type="text" name="nombre")
+                //- Agregamos el método POST y la ruta a donde se enviarán los datos
+                form.space-y-5(method="POST" action="/auth/registro")
                     
                     div
-                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Correo Electronico
-                        input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e:usuario@dominio.com" type="email" name="email")
+                        //- Aplicamos tu idea: for, id y name son "nombreUsuario"
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="nombreUsuario") Nombre Completo:
+                        input#nombreUsuario.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e: Jonathan Isai Leal Cruz" type="text" name="nombreUsuario")
+                    
+                    div
+                        //- Aplicamos la misma lógica para el email
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="emailUsuario") Correo Electrónico:
+                        input#emailUsuario.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e: usuario@dominio.com" type="email" name="emailUsuario")
 
                     div
-                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") Contraseña
-                        input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e:ContraseñaSegura123" type="password" name="password")
+                        //- Y para la contraseña
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="passwordUsuario") Contraseña:
+                        input#passwordUsuario.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e: ContraseñaSegura123" type="password" name="passwordUsuario")
 
                     div
-                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="repetir_password") Confirmacion de contraseña
-                        input#repetir_password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Repite tu Password" type="password" name="repetir_password")
+                        //- Y para confirmar la contraseña
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="repetirPasswordUsuario") Confirmación de Contraseña:
+                        input#repetirPasswordUsuario.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Repite tu Password" type="password" name="repetirPasswordUsuario")
 
+                    //- El botón de enviar
                     input(class="w-full bg-green-500 hover:bg-green-300 text-white font-bold py-3 cursor-pointer rounded-4xl shadow-lg uppercase" type="submit" value="Crear Cuenta")
 
-                    div.flex.items-center.justify-between 
-                        a.text-gray-500.text-xs(href="/auth/login") ¿Ya tienes cuenta? Inicia Sesión
-                        a.text-gray-500.text-xs(href="/auth/olvide-password") Olvidé mi Password
+                //- Enlaces inferiores (quedan fuera del form, lo cual es correcto)
+                div.flex.items-center.justify-between.mt-5
+                    a.text-gray-500.text-xs(href="/auth/login" class="hover:text-green-300 hover:underline") ¿Ya tienes cuenta? Inicia Sesión
+                    
+                    a.text-gray-500.text-xs(href="/auth/olvidepassword" class="hover:text-green-300 hover:underline") Olvidé mi Password
