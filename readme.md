@@ -33,7 +33,7 @@ desarrollo del mismo </p>
 | 2.|Routing y Requests (peticiones)|5|✅ Terminado|
 | 3.|Layout, Templates Engines y Tailwind CSS (Frontend)|5|✅ Terminado|
 | 4.|Creacion de Paginas de Login y Creacion de Usuarios|5|✅ Terminado|
-| 5.|ORMs y Bases de Datos|❌|❌|
+| 5.|ORMs y Bases de Datos|5|✅ Terminado|
 | 6.|Insertando Resgistros en la Tabla Usuarios|❌|❌|
 | 7.|Implementacion de la Funcionalidad (Feature) Recuperacion de Contraseñas (Password Recovery)|❌|❌|
 | 8.|Autentificacion de Usuarios (auth)|❌|❌|
