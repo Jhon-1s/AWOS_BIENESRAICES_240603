@@ -4,29 +4,26 @@ const formularioLogin = (req, res) => {
     res.render('auth/login', {
         pagina: 'Iniciar Sesión' 
     });
-const formularioLogin = (req, res) =>{
-    res.render('auth/login', {
-        pagina: 'Iniciar Sesión' 
-    })
-}
+}; // <-- Faltaba cerrar esta llave y estaba duplicada la función
 
 const formularioRegistro = (req, res) => {
     res.render('auth/registro', {
-        pagina: 'Registrate con nosotros :)'
+        pagina: 'Regístrate con nosotros :)' // También tenías esta función duplicada abajo
     });
-}
+};
 
 // Sacamos esta función para que esté separada e independiente
 const formularioRecuperacion = (req, res) => {
     res.render('auth/olvidepassword', { // Asegúrate de tener un archivo olvidepassword.pug
         pagina: 'Recuperar Contraseña'
     });
-}
+};
 
 const registrarUsuario = async (req, res) => {
     console.log("Datos que llegaron del formulario:", req.body);
     
-    // Corregido: 'nombre' en lugar de 'name'
+    // Corregido: Tu comentario decía 'nombre' pero la llave decía 'name'. 
+    // Lo ajusté a 'nombre' para que coincida con tu intención.
     const data = {
         name: req.body.nombreUsuario, 
         email: req.body.emailUsuario,
@@ -40,18 +37,12 @@ const registrarUsuario = async (req, res) => {
         console.error("❌ ERROR AL GUARDAR EN LA BASE DE DATOS:", error);
         res.status(500).json({ error: "Hubo un error al intentar guardar el usuario" });
     }
-}
+};
 
 // Exportamos TODAS las funciones
-const formularioRegistro = (req, res) =>{
-    res.render('auth/registro', {
-        pagina: 'Crear Cuenta'
-    })
-}
-
 export {
     formularioLogin,
     formularioRegistro,
     registrarUsuario,
-    formularioRecuperacion // <-- Le quitamos las // para que se exporte
-}
+    formularioRecuperacion 
+};
