@@ -1,6 +1,6 @@
 //console.log("Hola desde JS");
 import express from 'express';
-import usuarioRoutes from './routes/usuarioRoutes.js';
+import usuarioRoutes from './routes/usuarioroutes.js';
 import { connectDB} from './config/db.js';
 
 // Crea una instancia del contenedor web 
