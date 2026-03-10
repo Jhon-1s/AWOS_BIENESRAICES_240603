@@ -1,42 +1,39 @@
-extends ../layout/index
+extends ../layout/index 
 
+//- ¡Aquí estaba el error! Cambiamos "contenido" por "content"
 block content
     .py-10
         h1.text-4xl.my-10.font-extrabold.text-center.text-green-400 Bienes
-            span.font-normal.text-black Raices
-        
-        h2.text-center.text-2xl.font-normal.text-black Por favor ingresa tus datos cuidadosamente 
+            span.font-normal.text-black Raíces
+        h2.text-center.text-2xl.font-normal.text-black Por favor ingresa cuidadosamente tus datos
 
-        .mt-8.mx-auto.max-w-md
-            .bg-white.py-8.px-4.shadow-2xl.rounded-md
-                //- Agregamos el método POST y la ruta a donde se enviarán los datos
-                form.space-y-5(method="POST" action="/auth/registro")
-                    
-                    div
-                        //- Aplicamos tu idea: for, id y name son "nombreUsuario"
-                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="nombreUsuario") Nombre Completo:
-                        input#nombreUsuario.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e: Jonathan Isai Leal Cruz" type="text" name="nombreUsuario")
-                    
-                    div
-                        //- Aplicamos la misma lógica para el email
-                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="emailUsuario") Correo Electrónico:
-                        input#emailUsuario.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e: usuario@dominio.com" type="email" name="emailUsuario")
+        if errores 
+            .max-w-md.mx-auto.my-10 
+                each error in errores 
+                    p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
 
-                    div
-                        //- Y para la contraseña
+        .mt-8.mx-auto.max-w-xl
+            .bg-white.py-8.px-4.shadow-2xl.rounded-2xl
+                form.space-y-5(method="POST" action="/auth/registro" noValidate)
+                    div.px-5 
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="nombreUsuario") nombre completo:
+                        input#nombreUsuario(type="text" class="w-full border border-gray-300 px-3 py-2 rounded-xl placeholder-gray-400 hover:border-gray-400 focus:inset-shadow-xl focus:inset-shadow-green-300 focus:outline-none" placeholder="p.e.: Jonathan Isai Leal Cruz" name="nombreUsuario" value= usuario ? usuario.nombreUsuario: '')
+                    
+                    div.px-5 
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="emailUsuario") correo electrónico:
+                        input#emailUsuario(type="email" class="w-full border border-gray-300 px-3 py-2 rounded-xl placeholder-gray-400 hover:border-gray-400 focus:inset-shadow-xl focus:inset-shadow-green-300 focus:outline-none" placeholder="p.e.: correo@dominio.com" name="emailUsuario" value= usuario ? usuario.emailUsuario: '')
+                    
+                    div.px-5
                         label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="passwordUsuario") Contraseña:
-                        input#passwordUsuario.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e: ContraseñaSegura123" type="password" name="passwordUsuario")
+                        input#passwordUsuario(type="password" class="w-full border border-gray-300 px-3 py-2 rounded-xl placeholder-gray-400 hover:border-gray-400 focus:inset-shadow-md focus:inset-shadow-green-300/50 focus:outline-none" placeholder="Por los menos 8 carácteres" name="passwordUsuario")
 
-                    div
-                        //- Y para confirmar la contraseña
-                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="repetirPasswordUsuario") Confirmación de Contraseña:
-                        input#repetirPasswordUsuario.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Repite tu Password" type="password" name="repetirPasswordUsuario")
-
-                    //- El botón de enviar
-                    input(class="w-full bg-green-500 hover:bg-green-300 text-white font-bold py-3 cursor-pointer rounded-4xl shadow-lg uppercase" type="submit" value="Crear Cuenta")
-
-                //- Enlaces inferiores (quedan fuera del form, lo cual es correcto)
-                div.flex.items-center.justify-between.mt-5
-                    a.text-gray-500.text-xs(href="/auth/login" class="hover:text-green-300 hover:underline") ¿Ya tienes cuenta? Inicia Sesión
+                    div.px-5
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="confirmacionUsuario") Confirmación de Contraseña:
+                        input#confirmacionUsuario(type="password" class="w-full border border-gray-300 px-3 py-2 rounded-xl placeholder-gray-400 hover:border-gray-400 focus:inset-shadow-md focus:inset-shadow-green-300/50 focus:outline-none" placeholder="Repite la contraseña anterior" name="confirmacionUsuario")
                     
-                    a.text-gray-500.text-xs(href="/auth/olvidepassword" class="hover:text-green-300 hover:underline") Olvidé mi Password
+                    div.flex.justify-center.py-6
+                        input(class="w-3/4 bg-gray-300 text-green-500 hover:bg-green-500 hover:text-white font-bold py-3 cursor-pointer rounded-4xl shadow-lg uppercase transition-all duration-200" type="submit" value="Registrar Usuario")
+
+                    div.flex.items-center.justify-between.pt-3
+                        a(class="text-gray-500 text-sm hover:decoration-green-400 hover:underline transition decoration-2" href="/auth/login") ¿Ya tienes cuenta? Inicia Sesión
+                        a(class="text-gray-500 text-sm hover:decoration-green-400 hover:underline transition decoration-2" href="/auth/recuperarPassword") ¿Olvidaste tu contraseña? Recupérala

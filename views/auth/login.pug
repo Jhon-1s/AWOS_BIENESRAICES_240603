@@ -1,26 +1,25 @@
-extends ../layout/index
+extends ../layout/index 
 
-block content
-    div.py-10
+block contenido
+    .py-10
         h1.text-4xl.my-10.font-extrabold.text-center.text-green-400 Bienes
-            span.font-normal.text-black Raices
-        
-        h2.text-center.text-2xl.font-normal Inicia Sesión
+            span.font-normal.text-black Raíces
+        h2.text-center.text-2xl.font-normal.text-black Ingresa los datos de tu cuenta
 
-    div.mt-8.mx-auto.max-w-md
-        .bg-white.py-8.px-4.shadow-2xl.rounded-md
-            form.space-y-5
-                div
-                    label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="email") Correo Electronico
-                    input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e:usuario@dominio.com" type="email" name="email")
+        .mt-8.mx-auto.max-w-xl
+            .bg-white.py-8.px-4.shadow-2xl.rounded-2xl
+                form.space-y-5 
+                    div.px-5 
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="emailUsuario") correo electrónico:
+                        input#emailUsuario(type="email" class="hover:inset-shadow-sm focus:inset-shadow-xl focus:inset-shadow-green-300 focus:outline-none w-full hover border border-gray-300 px-3 py-2 rounded-xl placeholder-gray-400" placeholder="p.e.: correo@dominio.com" name="emailUsuario")
+                    
+                    div.px-5
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="passwordUsuario") Contraseña:
+                        input#passwordUsuario(type="password" class="w-full border border-gray-300 px-3 py-2 rounded-xl placeholder-gray-400 hover:inset-shadow-sm focus:inset-shadow-md focus:inset-shadow-green-300/50 focus:outline-none" placeholder="Por los menos 8 carácteres" name="passwordUsuario")
 
-                div
-                    label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") Contraseña
-                    input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="p.e:ContraseñaSegura123" type="password" name="password")
+                    div.flex.justify-center.py-6
+                        input(class="w-3/4 bg-gray-300 text-green-400 hover:bg-green-400 hover:text-white font-bold py-3 cursor-pointer rounded-4xl shadow-lg uppercase transition-all duration-200" type="submit" value="Iniciar Sesión")
 
-                div.flex.items-center.justify-between
-                    input(class="w-full bg-green-500 hover:bg-green-300 text-white font-bold py-3 cursor-pointer rounded-4xl shadow-lg uppercase" type="submit" value="Inicia Sesion")
-
-                div.flex.justify-between
-                    a.text-gray-500.text-xs(href="/auth/login" class="hover:text-green-300 hover:underline") ¿Ya tienes cuenta? Inicia Sesión
-                    a.text-gray-500.text-xs(href="/auth/olvidepassword" class="hover:text-green-300 hover:underline") Olvidé mi Password
+                    div.flex.items-center.justify-between
+                        a(class="text-gray-500 text-sm hover:decoration-green-400 hover:underline transition decoration-2" href="/auth/registro") ¿No tienes cuenta? Regístrate
+                        a(class="text-gray-500 text-sm hover:decoration-green-400 hover:underline transition decoration-2" href="/auth/recuperarPassword") ¿Olvidaste tu contraseña? Recupérala
