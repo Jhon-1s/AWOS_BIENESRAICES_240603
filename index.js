@@ -1,35 +1,70 @@
-import express from "express";
-import usuarioRoutes from './routes/usuariorouter.js';
-import dotenv from 'dotenv';
-import { connectDB } from "./config/db.js";
-import db from './config/db.js'; // 1. Importamos tu conexión
+//console.log("Hola desde JS");
+import express from 'express';
+import usuarioRoutes from './routes/usuarioRoutes.js';
+import { connectDB} from './config/db.js';
+import session from "express-session";
+import passport from './config/passport.js';
+import cookieParser from "cookie-parser";
+import csurf from "@dr.pogodin/csurf";
 
-// 2. IMPORTANTE: Importamos el modelo aquí para que Sequelize sepa que existe ANTES de sincronizar
-import Usuario from './models/Usuario.js'; // Asegúrate de que la ruta sea correcta según tus carpetas
-
+// Crea una instancia del contenedor web 
 const app = express();
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+// Habilitar el Template Engine (PUG)
+app.set("view engine", "pug");
+app.set("views", "./views")
 
-app.use(express.static('public'));
-app.use(express.urlencoded({extended: true}));
+// Definimos la carpeta de los recursos estáticos
+app.use(express.static('public'))
 
-app.use("/auth", usuarioRoutes);
+// Habilitar lectura de datos a través de las peticiones (REQUEST)
+app.use(express.urlencoded({extended: true}))
+// Activamos la opción para poder manipular Cookies - Almacenamiento en el cliente (navegador) 
+app.use(cookieParser());
+app.use(express.json());
 
-// 3. Conectamos y Sincronizamos la base de datos
-try {
-    await connectDB(); // Conecta a MySQL
-    
-    // El método sync() lee los modelos importados y CREA las tablas que falten
-    await db.sync(); 
-    console.log("¡Tabla sincronizada correctamente en la base de datos!");
-    
-} catch (error) {
-    console.error("Error al conectar o sincronizar la BD:", error);
-}
+// Definimos el Middleware  - 
+app.use(session({
+    secret: process.env.SESSION_SECRET||"PC-BienesRaices_240603_csrf_secret",
+    resave: false,
+    saveUninitialized: false, 
+    cookie: {
+        httpOnly: true, 
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production"
+        }
+    }));
 
-const PORT = process.env.PORT ?? 3000;
-app.listen(PORT, ()=> {
-    console.log(`El servidor está iniciado en el puerto ${PORT}`)
+    app.use(passport.initialize());
+app.use(passport.session());
+
+//Habilitamos el mecanismo para protección de CSRF
+app.use(csurf())
+
+
+// Habilitar los tokes de CSRF para cualquier formulario
+app.use((req, res, next) =>
+{
+    res.locals.csrfToken = req.csrfToken();
+    next();
 });
+
+app.use("/auth", usuarioRoutes)
+await connectDB();
+
+// Cachear el error
+app.use((err, req, res, next) => {
+    if (err.code === "EBADCSRFTOKEN") {
+        return res.status(403).render("templates/mensaje", {
+            pagina: "Error de seguridad",
+            title: "Error CSRF",
+            msg: "El formulario expiró o fue manipulado. Recarga la página."
+        });
+    }
+
+    next(err);
+});
+
+app.listen(process.env.PORT ?? 3000, ()=> {
+    console.log(`El servidor esta iniciado en el puerto ${process.env.PORT}`)
+}) 
