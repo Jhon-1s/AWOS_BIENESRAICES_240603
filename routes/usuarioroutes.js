@@ -1,3 +1,4 @@
+import passport from '../config/passport.js';
 import express from 'express'
 import {formularioLogin, formularioRecuperacion, formularioRegistro, registrarUsuario, paginaConfirmacion} from '../controllers/usuarioController.js'
 
@@ -98,5 +99,35 @@ router.delete("/borrarPropiedad/:id", (req, res)=>{
         message: `Se ha eliminado la propiedad con id : ${id}`
     })
 })
+
+// ==========================================
+// RUTAS DE AUTENTICACIÓN GOOGLE
+// ==========================================
+// 1. Enviar al usuario a la pantalla de Google
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+// 2. Recibir la respuesta de Google
+router.get('/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/auth/login' }),
+    (req, res) => {
+        // Si todo sale bien, lo mandamos al inicio (o a donde tú quieras)
+        res.redirect('/'); 
+    }
+);
+
+// ==========================================
+// RUTAS DE AUTENTICACIÓN X (TWITTER)
+// ==========================================
+// 1. Enviar al usuario a la pantalla de X
+router.get('/x', passport.authenticate('twitter'));
+
+// 2. Recibir la respuesta de X
+router.get('/x/callback', 
+    passport.authenticate('twitter', { failureRedirect: '/auth/login' }),
+    (req, res) => {
+        // Si todo sale bien, lo mandamos al inicio
+        res.redirect('/'); 
+    }
+);
 
 export default router

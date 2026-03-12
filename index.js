@@ -3,6 +3,7 @@ import express from 'express';
 import usuarioRoutes from './routes/usuarioRoutes.js';
 import { connectDB} from './config/db.js';
 import session from "express-session";
+import passport from './config/passport.js';
 import cookieParser from "cookie-parser";
 import csurf from "@dr.pogodin/csurf";
 
@@ -33,6 +34,9 @@ app.use(session({
         secure: process.env.NODE_ENV === "production"
         }
     }));
+
+    app.use(passport.initialize());
+app.use(passport.session());
 
 //Habilitamos el mecanismo para protección de CSRF
 app.use(csurf())
