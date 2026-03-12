@@ -29,12 +29,12 @@ desarrollo del mismo </p>
 
 |No.|Descripcion|Ponteciador|Estatus|
 |---|---|---|---|
-| 1.|Configuración inicial del Proyecto (NodeJS)|1|✅ Terminado|
+| 1.|Configuración inicial del Proyecto (NodeJS)|2|✅ Terminado|
 | 2.|Routing y Requests (peticiones)|5|✅ Terminado|
 | 3.|Layout, Templates Engines y Tailwind CSS (Frontend)|5|✅ Terminado|
-| 4.|Creacion de Paginas de Login y Creacion de Usuarios|7|✅ Terminado|
-| 5.|ORMs y Bases de Datos|5|✅ Terminado|
-| 6.|Insertando Resgistros en la Tabla Usuarios|❌|❌|
+| 4.|Creacion de Paginas de Login y Creacion de Usuarios|6|✅ Terminado|
+| 5.|ORMs y Bases de Datos|7|✅ Terminado|
+| 6.|Insertando Resgistros en la Tabla Usuarios|20|✅ Terminado|
 | 7.|Implementacion de la Funcionalidad (Feature) Recuperacion de Contraseñas (Password Recovery)|❌|❌|
 | 8.|Autentificacion de Usuarios (auth)|❌|❌|
 | 9.|Definicion de Clase Propiedades (property)|❌|❌|
