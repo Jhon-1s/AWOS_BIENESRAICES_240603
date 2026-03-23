@@ -35,7 +35,7 @@ desarrollo del mismo </p>
 | 4.|Creacion de Paginas de Login y Creacion de Usuarios|6|✅ Terminado|
 | 5.|ORMs y Bases de Datos|7|✅ Terminado|
 | 6.|Insertando Resgistros en la Tabla Usuarios|20|✅ Terminado|
-| 7.|Implementacion de la Funcionalidad (Feature) Recuperacion de Contraseñas (Password Recovery)|❌|❌|
+| 7.|Implementacion de la Funcionalidad (Feature) Recuperacion de Contraseñas (Password Recovery)|20|✅ Terminado|
 | 8.|Autentificacion de Usuarios (auth)|❌|❌|
 | 9.|Definicion de Clase Propiedades (property)|❌|❌|
 | 10.|Operaciones CRUD (Create, Read,Update, Delete)|❌|❌|
