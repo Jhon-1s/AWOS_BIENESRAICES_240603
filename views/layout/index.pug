@@ -13,3 +13,51 @@ html(lang="es")
             
         footer.bg-gray-800.text-white.text-center.p-4
             p &copy; 2026 Bienes Raices. Todos los derechos reservados.
+
+            block scripts 
+            script.
+                document.addEventListener('DOMContentLoaded', () => {
+                    const alertas = document.querySelectorAll('.alerta-temporal');
+                    
+                    if (alertas.length > 0) {
+                        const tiempoVisible = 5000; // 5 segundos de vida
+                        
+                        alertas.forEach(alerta => {
+                            const barra = alerta.querySelector('.barra-progreso');
+                            
+                            // 1. Iniciar la animación de la barra (de 100% a 0%)
+                            setTimeout(() => {
+                                barra.style.transition = `width ${tiempoVisible}ms linear`;
+                                barra.style.width = '0%';
+                            }, 50); // Un micro-retraso para que el navegador registre la animación
+
+                            // 2. Desaparecer la alerta entera cuando acabe el tiempo
+                            setTimeout(() => {
+                                // Se desliza a la derecha y se hace transparente
+                                alerta.classList.remove('opacity-100', 'translate-x-0');
+                                alerta.classList.add('opacity-0', 'translate-x-full');
+                                
+                                // 3. Destruir el elemento del HTML
+                                setTimeout(() => {
+                                    alerta.remove();
+                                }, 500);
+                            }, tiempoVisible);
+                        });
+                    }
+                });
+                document.addEventListener('DOMContentLoaded', () => {
+                    const alertas = document.querySelectorAll('.alerta-temporal');
+                    
+                    if (alertas.length > 0) {
+                        setTimeout(() => {
+                            alertas.forEach(alerta => {
+                                alerta.classList.remove('opacity-100');
+                                alerta.classList.add('opacity-0');
+                                
+                                setTimeout(() => {
+                                    alerta.remove();
+                                }, 500);
+                            });
+                        }, 3500);
+                    }
+                });

@@ -1,11 +1,12 @@
 //console.log("Hola desde JS");
 import express from 'express';
-import usuarioRoutes from './routes/usuarioRoutes.js';
+import propiedadesRoutes from './routes/propiedadesRoutes.js';
 import { connectDB} from './config/db.js';
 import session from "express-session";
 import passport from './config/passport.js';
 import cookieParser from "cookie-parser";
 import csurf from "@dr.pogodin/csurf";
+import usuarioRoutes from './routes/usuarioroutes.js';
 
 // Crea una instancia del contenedor web 
 const app = express();
@@ -13,6 +14,7 @@ const app = express();
 // Habilitar el Template Engine (PUG)
 app.set("view engine", "pug");
 app.set("views", "./views")
+app.use('/', propiedadesRoutes);
 
 // Definimos la carpeta de los recursos estáticos
 app.use(express.static('public'))

@@ -1,51 +1,33 @@
-import passport from '../config/passport.js';
 import express from 'express'
-import {formularioLogin, formularioRecuperacion, formularioRegistro, registrarUsuario, paginaConfirmacion} from '../controllers/usuarioController.js'
+import {formularioLogin, formularioRecuperacion, formularioRegistro, registrarUsuario,
+    paginaConfirmacion,resetearPassword, formularioActualizacionPassword, actualizarPassword, autenticar
+} from '../controllers/usuarioController.js'
 
 const router = express.Router();
 
 // Definir los ENDPOINTS
 // GET
 router.get("/login", formularioLogin)
+router.post("/login", autenticar);
 router.get("/registro", formularioRegistro)
-router.post("/registro", registrarUsuario)
 router.get("/recuperarPassword", formularioRecuperacion)
 router.get("/confirma/:token", paginaConfirmacion)
+router.get("/actualizarPassword/:token", formularioActualizacionPassword)
 
+//POST
+router.post("/registro", registrarUsuario)
+router.post("/recuperarPassword", resetearPassword)
+router.post("/actualizarPassword", actualizarPassword)
 
-//post
-
-//Definimos las rutas
-// Ejemplo de un ENDPOINT GET
-router.get("/", (req, res) => {
-    console.log("Bienvenid@ al Sistema de Bienes Raices")
-    console.log("Procesando una petición del tipo GET");
-    res.json({
-        status:200, 
-        message: "Solicitud recibida a través del método GET"
-    })
-})
-
-// Ejemplo de un ENDPOINT POST
-router.post("/", (req,res) => {
-    console.log("Procesando una petición del tipo POST");
-    res.json({
-        status:400, 
-        message: "Lo sentimos, no se aceptan peticiones POST."
-    })
-})
-
-
-// Ejemplo de un ENDPOINT POST  - Simular la creación de un nuevo usuario
-router.post("/createUser", (req,res)=>{
-    console.log("Procesando una petición del tipo POST");
-    console.log("Se ha solicitado crear un nuevo usuario.")
-    const nuevoUsuario = 
+router.post("/createUser", (req, res) =>
     {
-        nombre: "Jonathan Leal",
-        correo: "jonathan.leal@gmail.com"
-    }
-    res.json({
+        console.log("Se esta procesando una petición del tipo POST")
+        const nuevoUsuario = {
+            nombre:"Jonathan I. Leal Cruz",
+            correo:"jonathan.leal@gmail.com"
+        }
+
+        res.json({
             status:200, 
             message: `Se ha solicitado la creación de un nuevo usuario con nombre: ${nuevoUsuario.nombre} y correo: ${nuevoUsuario.correo}`
         })
@@ -99,35 +81,5 @@ router.delete("/borrarPropiedad/:id", (req, res)=>{
         message: `Se ha eliminado la propiedad con id : ${id}`
     })
 })
-
-// ==========================================
-// RUTAS DE AUTENTICACIÓN GOOGLE
-// ==========================================
-// 1. Enviar al usuario a la pantalla de Google
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-// 2. Recibir la respuesta de Google
-router.get('/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/auth/login' }),
-    (req, res) => {
-        // Si todo sale bien, lo mandamos al inicio (o a donde tú quieras)
-        res.redirect('/'); 
-    }
-);
-
-// ==========================================
-// RUTAS DE AUTENTICACIÓN X (TWITTER)
-// ==========================================
-// 1. Enviar al usuario a la pantalla de X
-router.get('/x', passport.authenticate('twitter'));
-
-// 2. Recibir la respuesta de X
-router.get('/x/callback', 
-    passport.authenticate('twitter', { failureRedirect: '/auth/login' }),
-    (req, res) => {
-        // Si todo sale bien, lo mandamos al inicio
-        res.redirect('/'); 
-    }
-);
 
 export default router
