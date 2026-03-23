@@ -1,4 +1,3 @@
-
 import { DataTypes} from "sequelize";
 import db from "../config/db.js"
 import bcrypt from 'bcrypt';
@@ -43,7 +42,7 @@ const Usuario = db.define('Usuario', {
           msg: 'La contraseña no puede estar vacía'
         },
         len: {
-          args: [8, 100],
+          args: [6, 100],
           msg: 'La contraseña debe tener al menos 6 caracteres'
         }
       }
@@ -62,6 +61,14 @@ const Usuario = db.define('Usuario', {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'token_expiration'
+    },
+        intentosFallidos: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+    },
+    bloqueado: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     },
     regStatus: {
       type: DataTypes.BOOLEAN,
@@ -97,9 +104,10 @@ const Usuario = db.define('Usuario', {
         }
       }
     }
+    
   });
 
-  /*
+  
   // Métodos de instancia
   Usuario.prototype.validarPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
@@ -142,6 +150,6 @@ const Usuario = db.define('Usuario', {
         regStatus: true
       }
     });
-  };*/
+  };
 
   export default Usuario;
