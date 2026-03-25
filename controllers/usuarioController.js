@@ -242,6 +242,24 @@ const autenticar = async (req, res) => {
 
     return res.redirect('/mis-propiedades');
 };
+const callbackOAuth = (req, res) => {
+    if (!req.user) {
+        return res.redirect('/auth/login');
+    }
+
+    const usuario = req.user;
+
+    const token = generarJWT({ 
+        id: usuario.id, 
+        nombre: usuario.name, 
+        email: usuario.email 
+    });
+
+    return res.cookie('_token', token, {
+        httpOnly: true,
+        sameSite: 'strict'
+    }).redirect('/mis-propiedades');
+};
 
 export {
-    formularioLogin,formularioRegistro,registrarUsuario,formularioRecuperacion,paginaConfirmacion,resetearPassword,formularioActualizacionPassword,actualizarPassword,autenticar};
+    formularioLogin,formularioRegistro,registrarUsuario,formularioRecuperacion,paginaConfirmacion,resetearPassword,formularioActualizacionPassword,actualizarPassword,callbackOAuth,autenticar};

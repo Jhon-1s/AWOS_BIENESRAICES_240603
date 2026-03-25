@@ -1,3 +1,4 @@
+import passport from 'passport';
 import express from 'express';
 import {
     formularioLogin,
@@ -8,6 +9,7 @@ import {
     resetearPassword,
     formularioActualizacionPassword,
     actualizarPassword,
+    callbackOAuth,
     autenticar
 } from '../controllers/usuarioController.js';
 
@@ -21,6 +23,20 @@ router.get("/registro", formularioRegistro);
 router.get("/recuperarPassword", formularioRecuperacion);
 router.get("/confirma/:token", paginaConfirmacion);
 router.get("/actualizarPassword/:token", formularioActualizacionPassword);
+router.get('/google', 
+    passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+router.get('/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/auth/login' }), 
+    callbackOAuth
+);
+router.get('/x', 
+    passport.authenticate('twitter')
+);
+router.get('/x/callback', 
+    passport.authenticate('twitter', { failureRedirect: '/auth/login' }), 
+    callbackOAuth
+);
 
 // --- POST ---
 router.post("/login", autenticar);
