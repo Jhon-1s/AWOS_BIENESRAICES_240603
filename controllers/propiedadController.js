@@ -1,5 +1,5 @@
 const admin = (req, res) => {
-    res.render('propiedades/admin', {
+    res.render('main/mis-propiedades', {
         pagina: 'Mis Propiedades'
     });
 };

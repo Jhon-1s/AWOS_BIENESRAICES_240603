@@ -52,13 +52,73 @@ desarrollo del mismo </p>
 | 22.|Barras de Navegacion y Cierre de Sesion|❌|❌|
 | 23.|Publicacion del API y el Frontend|❌|❌|
 
-## Resultados Obtenidos
-```
-Posteriormente se ubicaran imagenes del proyecto
+---
 
-```
+## Resultados Obtenidos
+
+# Test 1: Interacción Rotativa (Registro, Login y Recuperación)
+
+![Interacción Rotativa - Registro](Documentacion/01-Registro.png)
+*Navegación y enlace a Login*
+![Interacción Rotativa - Login](Documentacion/02-Login.png)
+*Navegación y enlace a Recuperación*
+![Interacción Rotativa - Recuperación](Documentacion/03-Recuperacion.png)
+*Navegación y enlace entre las diferentes vistas públicas de autenticación sin errores de ruteo.*
 
 ---
+
+# Test 2: Registro Exitoso de un Nuevo Usuario
+
+![Registro Exitoso](Documentacion/04-RegistroExitoso.png)
+*Registro de un nuevo usuario exitoso*
+![Registro en Base de Datos](Documentacion/05-RegistroDB.png)
+*Verificación del nuevo usuario en la base de datos con contraseña hasheada*
+---
+# Test 3: Registro Fallido (Formulario mal llenado)
+![Registro Fallido](Documentacion/06-RegistroFallido.png)
+*Registro fallido por errores de formulario (campos vacíos, formato de email incorrecto, contraseña débil)*
+
+---
+
+# Test 4: Registro Fallido por correo duplicado
+![Registro Duplicado](Documentacion/07-RegistroDuplicado.png)
+*Registro fallido por correo electrónico ya registrado en la base de datos* 
+
+---
+
+# Test 5: Validación de Usuario por Email
+![Validacion por Email](Documentacion/08-RegistroExitoso.png)
+*Usuario recibe correo de validación y al hacer clic en el enlace, su cuenta se valida exitosamente*
+![Registro Exitoso](Documentacion/04-RegistroExitoso.png)
+*Registro de un nuevo usuario exitoso*
+
+---
+# Test 6: Actualización exitosa de contraseña de un usuario validado
+![Mensaje de correo](Documentacion/09-mensaje-email.png)
+*Usuario recibe correo con enlace para actualizar contraseña*
+![Actualización Exitosa](Documentacion/11-ActualizacionExitosa.png)
+*Usuario actualiza su contraseña exitosamente y puede iniciar sesión con la nueva contraseña*
+
+---
+# Test 7: Actualización fallida de contraseña de un usuario no validado
+![Actualización Fallida](Documentacion/10-ActualizacionFallida.png)
+*Usuario no validado intenta actualizar su contraseña pero recibe un mensaje de error indicando que su cuenta no está validada* 
+
+---
+# Test 8: Actualización fallida (errores de formulario y token inválido)
+![Actualización Fallida](Documentacion/12-ActualizacionFallida.png)
+*Usuario intenta actualizar su contraseña pero comete errores en el formulario (campos vacíos, contraseña débil) o el token de actualización es inválido, recibiendo mensajes de error correspondientes*
+
+---
+# Test 9: Logeo Exitoso y redirección a Mis Propiedades
+![Login Exitoso](Documentacion/13-LoginExitoso.png)
+*Usuario inicia sesión exitosamente con su correo y contraseña, y es redirigido a la página de Mis Propiedades*
+
+---
+# Test 10: Bloqueo de cuenta por exceso de intentos fallidos (5 intentos)
+
+![Bloqueo de Cuenta](Documentacion/14-BloqueoCuenta.png)
+*Usuario intenta iniciar sesión con credenciales incorrectas repetidamente, y después de 5 intentos fallidos, su cuenta es bloqueada temporalmente, recibiendo un mensaje de error indicando el bloqueo*
 
 ## Creador por: 
 Jonathan Isai Leal Cruz - 240603

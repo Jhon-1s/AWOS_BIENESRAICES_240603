@@ -42,7 +42,7 @@ const Usuario = db.define('Usuario', {
           msg: 'La contraseña no puede estar vacía'
         },
         len: {
-          args: [6, 100],
+          args: [8, 100],
           msg: 'La contraseña debe tener al menos 6 caracteres'
         }
       }
@@ -61,14 +61,6 @@ const Usuario = db.define('Usuario', {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'token_expiration'
-    },
-        intentosFallidos: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
-    },
-    bloqueado: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
     },
     regStatus: {
       type: DataTypes.BOOLEAN,
@@ -104,8 +96,13 @@ const Usuario = db.define('Usuario', {
         }
       }
     }
-    
   });
+
+
+ // Métodos de instancia
+  Usuario.prototype.validarPassword =  function(password) {
+    return  bcrypt.compareSync(password, this.password);
+  };
 
   
   // Métodos de instancia
