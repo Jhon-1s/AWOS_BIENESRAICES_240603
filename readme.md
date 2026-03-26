@@ -1,7 +1,6 @@
 
 ## Proyecto de Clase: Sistema de Bienes Raices
 ---
-
 <p align = "Justify">
 En esta proyecto se pondra en ejemplo practico la creacion de APIs propias asi como
 el consumo de APis de terceros (Gestion de Mapas, Envio de Correos, Autentificacion
